@@ -10,9 +10,6 @@ public class LaptopshopApplication {
 	public static void main(String[] args) {
 
 		ApplicationContext abcd = SpringApplication.run(LaptopshopApplication.class, args);
-		for (String s : abcd.getBeanDefinitionNames()) {
-			System.out.println(s);
-		}
 
 	}
 
