@@ -25,6 +25,12 @@ public class UserController {
     return "hello";
   }
 
+  @RequestMapping("/create")
+  public String getDomain(Model model) {
+
+    model.addAttribute("create");
+    return "hello";
+  }
 }
 
 // @RestController
