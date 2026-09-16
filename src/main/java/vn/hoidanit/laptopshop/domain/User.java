@@ -1,8 +1,5 @@
 package vn.hoidanit.laptopshop.domain;
 
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 public class User {
   private long id;
   private String email;
