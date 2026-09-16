@@ -1,14 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+    <!DOCTYPE html>
+    <html lang="en">
 
-<body>
-  hello from JSP
-</body>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+    </head>
 
-</html>
+    <body>
+      <h1>${eric}</h1>
+      <h2>${hoidanit}</h2>
+    </body>
+
+    </html>

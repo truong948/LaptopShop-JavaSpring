@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class UserService {
 
   public String handleHello() {
-    return "hello";
+    return "hello from service";
   }
 }
