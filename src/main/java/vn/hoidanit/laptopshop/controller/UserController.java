@@ -32,9 +32,10 @@ public class UserController {
   }
 
   @RequestMapping("/admin/user")
-  public String getDashBoard(Model model) {
-    List<User> Users = this.userService.getAllUsers();
-    System.out.println(">> Check user :" + Users);
+  public String getUserPage(Model model) {
+    List<User> users = this.userService.getAllUsers();
+    System.out.println("users1" + users);
+    model.addAttribute("users", users);
     return "admin/user/table-user";
   }
 

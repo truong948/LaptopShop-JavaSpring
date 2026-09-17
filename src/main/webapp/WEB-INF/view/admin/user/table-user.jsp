@@ -35,17 +35,20 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td><BUTTON class="btn btn-success" action="" method=""><a
-                      href="/admin/user/create">View</a></BUTTON><BUTTON class="btn btn-warning" action="" method=""><a
-                      href="/admin/user/create">Update</a></BUTTON>
-                  <BUTTON class="btn btn-danger" action="" method=""><a href="/admin/user/create">Delete</a></BUTTON>
-                </td>
+              <c:forEach var="user" items="${users}">
+                <tr>
+                  <th>${user.id}</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td><BUTTON class="btn btn-success" action="" method=""><a
+                        href="/admin/user/create">View</a></BUTTON><BUTTON class="btn btn-warning" action=""
+                      method=""><a href="/admin/user/create">Update</a></BUTTON>
+                    <BUTTON class="btn btn-danger" action="" method=""><a href="/admin/user/create">Delete</a></BUTTON>
+                  </td>
 
-              </tr>
+                </tr>
+              </c:forEach>
+              <!-- 
               <tr>
                 <th scope="row">2</th>
                 <td>Jacob</td>
@@ -55,7 +58,7 @@
                       href="/admin/user/create">Update</a></BUTTON>
                   <BUTTON class="btn btn-danger" action="" method=""><a href="/admin/user/create">Delete</a></BUTTON>
                 </td>
-              </tr>
+              </tr> -->
             </tbody>
           </table>
         </div>
