@@ -32,6 +32,13 @@ public class UserController {
   }
 
   @RequestMapping("/admin/user")
+  public String getDashBoard(Model model) {
+
+    model.addAttribute("hoidanit", "from controller with model");
+    return "admin/user/table-user";
+  }
+
+  @RequestMapping("/admin/user/create") // GET
   public String getCreateUserPage(Model model) {
     model.addAttribute("newUser", new User());
     model.addAttribute("hoidanit", "from controller with model");
