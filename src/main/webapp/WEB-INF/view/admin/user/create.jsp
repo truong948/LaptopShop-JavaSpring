@@ -42,7 +42,7 @@
                     <div class="mb-3">
                       <label class="form-label fw-semibold">Password</label>
                       <form:input type="password" class="form-control form-control-lg" path="password"
-                        required="required" placeholder="••••••••" />
+                        placeholder="••••••••" />
                     </div>
 
                     <div class="mb-3">
