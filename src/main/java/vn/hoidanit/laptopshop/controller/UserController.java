@@ -33,8 +33,8 @@ public class UserController {
 
   @RequestMapping("/admin/user")
   public String getDashBoard(Model model) {
-
-    model.addAttribute("hoidanit", "from controller with model");
+    List<User> Users = this.userService.getAllUsers();
+    System.out.println(">> Check user :" + Users);
     return "admin/user/table-user";
   }
 
