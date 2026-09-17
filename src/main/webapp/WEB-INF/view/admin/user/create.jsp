@@ -1,71 +1,78 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-    <!DOCTYPE html>
-    <html lang="en">
+      <!DOCTYPE html>
+      <html lang="en">
 
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Document</title>
-      <!-- Latest compiled and minified CSS -->
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Create A User</title>
 
-      <!-- Latest compiled JavaScript -->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap 5 CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Bootstrap 5 JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+      </head>
 
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-      <!-- <link href="/css/demo.css" rel="stylesheet"> -->
+      <body>
+        <div class="container mt-5">
+          <div class="row justify-content-center">
+            <!-- Tăng độ rộng form: col-md-8 col-lg-7 giúp form mở rộng hơn -->
+            <div class="col-12 col-md-8 col-lg-7">
 
-    </head>
+              <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white text-center py-3">
+                  <h4 class="mb-0 fw-bold">Create A User</h4>
+                </div>
 
-    <body>
+                <div class="card-body p-4 p-md-5">
+                  <form:form action="/admin/user/create" method="post" modelAttribute="newUser">
 
-      <div class="container mt-5">
-        <div class="row justify-content-center">
-          <div class="col-12 col-md-8 col-lg-6">
+                    <div class="mb-3">
+                      <label class="form-label fw-semibold">Email address</label>
+                      <!-- Thêm form-control-lg để tăng chiều cao ô nhập -->
+                      <form:input type="email" class="form-control form-control-lg" path="email" required="required"
+                        placeholder="name@example.com" />
+                    </div>
 
-            <div class="card shadow-sm">
-              <div class="card-header bg-primary text-white text-center">
-                <h4 class="mb-0">Create A User</h4>
+                    <div class="mb-3">
+                      <label class="form-label fw-semibold">Password</label>
+                      <form:input type="password" class="form-control form-control-lg" path="password"
+                        required="required" placeholder="••••••••" />
+                    </div>
+
+                    <div class="mb-3">
+                      <label class="form-label fw-semibold">Phone number</label>
+                      <form:input type="text" class="form-control form-control-lg" path="phone"
+                        placeholder="0901234567" />
+                    </div>
+
+                    <div class="mb-3">
+                      <label class="form-label fw-semibold">Full Name</label>
+                      <!-- Đổi path="fullname" thành path="fullName" -->
+                      <form:input type="text" class="form-control form-control-lg" path="fullName"
+                        placeholder="Nguyễn Văn A" />
+                    </div>
+
+                    <div class="mb-4">
+                      <label class="form-label fw-semibold">Address</label>
+                      <form:input type="text" class="form-control form-control-lg" path="address"
+                        placeholder="Địa chỉ thường trú" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg w-100 fw-semibold">Submit</button>
+
+                  </form:form>
+                </div>
               </div>
 
-              <div class="card-body p-4">
-                <form:form action="/admin/user/create1" method="post" modelAttribute="newUser">
-                  <div class="mb-3">
-                    <label class="form-label">Email address</label>
-                    <form:input type="email" class="form-control" name="email" required path="email" />
-                  </div>
-
-                  <div class="mb-3">
-                    <label class="form-label">Password</label>
-                    <form:input type="password" class="form-control" name="password" required path="password" />
-                  </div>
-
-                  <div class="mb-3">
-                    <label class="form-label">Phone number</label>
-                    <form:input type="text" class="form-control" name="phone" path="phone" />
-                  </div>
-
-                  <div class="mb-3">
-                    <label class="form-label">Full Name</label>
-                    <form:input type="text" class="form-control" name="fullName" path="fullname" />
-                  </div>
-
-                  <div class="mb-3">
-                    <label class="form-label">Address</label>
-                    <form:input type="text" class="form-control" name="address" path="address" />
-                  </div>
-
-                  <button type="submit" class="btn btn-primary w-100">Submit</button>
-                </form:form>
-              </div>
             </div>
-
           </div>
-
         </div>
-      </div>
-    </body>
+      </body>
 
-    </html>
+      </html>
