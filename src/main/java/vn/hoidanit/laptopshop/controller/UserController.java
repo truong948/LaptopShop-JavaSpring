@@ -44,6 +44,7 @@ public class UserController {
     List<User> users = this.userService.getUserByID(id);
     model.addAttribute("users", users);
     model.addAttribute("id", id);
+    System.out.println(id);
     return "admin/user/show";
   }
 

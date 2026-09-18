@@ -33,7 +33,7 @@
                     User Information
                   </div>
                   <ul class="list-group list-group-flush">
-                    <li class="list-group-item">${user.id}</li>
+                    <li class="list-group-item">ID:</li>
                     <li class="list-group-item">Email: -</li>
                     <li class="list-group-item">FullName: -</li>
                     <li class="list-group-item">Address: -</li>
