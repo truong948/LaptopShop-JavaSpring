@@ -31,15 +31,14 @@
 
                 <div class="card-body p-4 p-md-5">
                   <form:form action="/admin/user/update" method="post" modelAttribute="newUser">
-                    <div class="mb-3">
+                    <div class="mb-3" style="display:none;">
                       <label class="form-label fw-semibold">Id</label>
                       <form:input type="text" class="form-control form-control-lg" path="id" />
                     </div>
                     <div class="mb-3">
                       <label class="form-label fw-semibold">Email address</label>
                       <!-- Thêm form-control-lg để tăng chiều cao ô nhập -->
-                      <form:input type="email" class="form-control form-control-lg" path="email" required="required"
-                        placeholder="name@example.com" />
+                      <form:input type="email" class="form-control form-control-lg" path="email" disabled="true" />
                     </div>
 
 
