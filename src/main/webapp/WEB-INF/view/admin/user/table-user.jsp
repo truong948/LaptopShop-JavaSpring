@@ -41,7 +41,8 @@
                   <td>${user.email}</td>
                   <td>${user.fullName}</td>
                   <td><a class="btn btn-success" action="" method="" href="/admin/user/${user.id}">View</a>
-                    <BUTTON class="btn btn-warning" action="" method=""><a href="/admin/user/create">Update</a></BUTTON>
+                    <BUTTON class="btn btn-warning" action="" method=""><a
+                        href="/admin/user/update/${user.id}">Update</a></BUTTON>
                     <BUTTON class="btn btn-danger" action="" method=""><a href="/admin/user/create">Delete</a></BUTTON>
                   </td>
 

@@ -26,7 +26,7 @@ public class UserService {
     return this.userRepository.findOneByEmail(email);
   }
 
-  public List<User> getUserByID(long id) {
+  public User getUserByID(long id) {
     return this.userRepository.findById(id);
   }
 

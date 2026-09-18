@@ -41,10 +41,9 @@ public class UserController {
 
   @RequestMapping("/admin/user/{id}")
   public String getUserDetailPage(Model model, @PathVariable long id) {
-    List<User> users = this.userService.getUserByID(id);
+    User users = this.userService.getUserByID(id);
     model.addAttribute("users", users);
     model.addAttribute("id", id);
-    System.out.println(id);
     return "admin/user/show";
   }
 
@@ -52,6 +51,14 @@ public class UserController {
   public String getCreateUserPage(Model model) {
     model.addAttribute("newUser", new User());
     return "admin/user/create";
+  }
+
+  @RequestMapping("/admin/user/update/{id}") // Update
+  public String getUpdateUserPage(Model model, @PathVariable long id) {
+    User users = this.userService.getUserByID(id);
+    model.addAttribute("users", users);
+    model.addAttribute("id", id);
+    return "admin/user/update";
   }
 
   @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
