@@ -38,11 +38,10 @@
               <c:forEach var="user" items="${users}">
                 <tr>
                   <th>${user.id}</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td><BUTTON class="btn btn-success" action="" method=""><a
-                        href="/admin/user/create">View</a></BUTTON><BUTTON class="btn btn-warning" action=""
-                      method=""><a href="/admin/user/create">Update</a></BUTTON>
+                  <td>${user.email}</td>
+                  <td>${user.fullName}</td>
+                  <td><a class="btn btn-success" action="" method="" href="/admin/user/${user.id}">View</a>
+                    <BUTTON class="btn btn-warning" action="" method=""><a href="/admin/user/create">Update</a></BUTTON>
                     <BUTTON class="btn btn-danger" action="" method=""><a href="/admin/user/create">Delete</a></BUTTON>
                   </td>
 
