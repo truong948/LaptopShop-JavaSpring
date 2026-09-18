@@ -30,10 +30,10 @@
                 </div>
 
                 <div class="card-body p-4 p-md-5">
-                  <form:form action="/admin/user/create" method="post" modelAttribute="newUser">
+                  <form:form action="/admin/user/update" method="post" modelAttribute="newUser">
                     <div class="mb-3">
-                      <label class="form-label fw-semibold">${users.id}</label>
-                      <form:input type="id" class="form-control form-control-lg" path="id" />
+                      <label class="form-label fw-semibold">Id</label>
+                      <form:input type="text" class="form-control form-control-lg" path="id" />
                     </div>
                     <div class="mb-3">
                       <label class="form-label fw-semibold">Email address</label>
