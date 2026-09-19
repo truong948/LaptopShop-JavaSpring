@@ -43,7 +43,8 @@
                   <td><a class="btn btn-success" action="" method="" href="/admin/user/${user.id}">View</a>
                     <BUTTON class="btn btn-warning" action="" method=""><a
                         href="/admin/user/update/${user.id}">Update</a></BUTTON>
-                    <BUTTON class="btn btn-danger" action="" method=""><a href="/admin/user/create">Delete</a></BUTTON>
+                    <BUTTON class="btn btn-danger" action="" method=""><a
+                        href="/admin/user/delete/${user.id}">Delete</a></BUTTON>
                   </td>
 
                 </tr>
