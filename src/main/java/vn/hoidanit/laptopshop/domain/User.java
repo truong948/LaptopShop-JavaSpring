@@ -29,7 +29,7 @@ public class User {
   private Role role;
 
   @OneToMany(mappedBy = "user")
-  private List<Order> order;
+  List<Order> order;
 
   public long getId() {
     return id;
