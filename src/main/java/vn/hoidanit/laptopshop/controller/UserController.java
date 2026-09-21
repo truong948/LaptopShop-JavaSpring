@@ -62,12 +62,6 @@ public class UserController {
     return "admin/user/update";
   }
 
-  @GetMapping("/admin/user/delete/{id}") // Delete
-  public String getDeleteUserPage(Model model, @PathVariable long id) {
-    model.addAttribute("id", id);
-    return "admin/user/delete";
-  }
-
   @PostMapping("/admin/user/update") // Update
   public String postUpdateUser(Model model, @ModelAttribute("new User") User hoidanit) {
     User currentUser = this.userService.getUserByID(hoidanit.getId());
@@ -86,5 +80,20 @@ public class UserController {
     this.userService.handleSaveUser(hoidanit);
     return "redirect:/admin/user";
 
+  }
+
+  @GetMapping("/admin/user/delete/{id}") // Delete
+  public String getDeleteUserPage(Model model, @PathVariable long id) {
+    model.addAttribute("id", id);
+    User user = new User();
+    user.setId(id);
+    model.addAttribute("newUser", user);
+    return "admin/user/delete";
+  }
+
+  @PostMapping("/admin/user/delete") // Delete
+  public String postDeleteUser(Model model, @ModelAttribute("newUser") User eric) {
+    this.userService.deleteUserById(eric.getId());
+    return "redirect:/admin/user";
   }
 }
