@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -61,12 +62,17 @@ public class UserController {
     return "admin/user/update";
   }
 
+  @GetMapping("/admin/user/delete/{id}") // Delete
+  public String getDeleteUserPage(Model model, @PathVariable long id) {
+    model.addAttribute("id", id);
+    return "admin/user/delete";
+  }
+
   @PostMapping("/admin/user/update") // Update
   public String postUpdateUser(Model model, @ModelAttribute("new User") User hoidanit) {
     User currentUser = this.userService.getUserByID(hoidanit.getId());
     if (currentUser != null) {
       currentUser.setAddress(hoidanit.getAddress());
-      currentUser.setEmail(hoidanit.getEmail());
       currentUser.setFullName(hoidanit.getFullName());
       currentUser.setPhone(hoidanit.getPhone());
       this.userService.handleSaveUser(currentUser);
