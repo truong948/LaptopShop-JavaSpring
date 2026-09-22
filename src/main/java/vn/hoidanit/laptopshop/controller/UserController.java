@@ -29,8 +29,8 @@ public class UserController {
   public String getHomePage(Model model) {
     List<User> arrUser = this.userService.getAllUsers();
     System.out.println(arrUser);
-    model.addAttribute("eric", "test");
-    model.addAttribute("hoidanit", "from controller with model");
+    // model.addAttribute("eric", "test");
+    // model.addAttribute("hoidanit", "from controller with model");
     return "hello";
   }
 
@@ -79,7 +79,6 @@ public class UserController {
     System.out.println("run here" + hoidanit);
     this.userService.handleSaveUser(hoidanit);
     return "redirect:/admin/user";
-
   }
 
   @GetMapping("/admin/user/delete/{id}") // Delete
