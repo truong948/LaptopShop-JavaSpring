@@ -1,54 +1,73 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+    <!DOCTYPE html>
+    <html lang="en">
 
-      <!DOCTYPE html>
-      <html lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      <meta name="description" content="" />
+      <meta name="author" content="" />
+      <title>Dashboard - SB Admin</title>
+      <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+      <link href="/css/styles.css" rel="stylesheet" />
+      <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    </head>
 
-      <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>User Details</title>
+    <body class="sb-nav-fixed">
+      <jsp:include page="../layout/header.jsp" />
 
-        <!-- Bootstrap 5 CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Bootstrap 5 JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- jQuery -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-      </head>
+      <div id="layoutSidenav">
+        <jsp:include page="../layout/sidebar.jsp" />
 
-      <body>
-        <div class="container mt-5">
-          <div class="row justify-content-center">
-            <!-- Tăng độ rộng form: col-md-8 col-lg-7 giúp form mở rộng hơn -->
-            <div class="col-12 col-md-8 col-lg-7">
+        <div id="layoutSidenav_content">
+          <main>
+            <div class="container-fluid px-4">
+              <h1 class="mt-4">Product</h1>
+              <div class="mb-4">product</div>
 
-              <div class="card">
-                <div class="card-header bg-primary text-white text-center py-3">
-                  <h4 class="mb-0 fw-bold">User Details with id=${id}</h4>
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="mb-0">Table Users</h2>
+                <a class="btn btn-primary" href="/admin/user/create">CREATE A USER</a>
+              </div>
+
+              <div class="card mb-4">
+                <div class="card-body">
+                  <table class="table table-bordered table-hover mb-0">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <c:forEach var="user" items="${users}">
+                        <tr>
+                          <th scope="row">${user.id}</th>
+                          <td>${user.email}</td>
+                          <td>${user.fullName}</td>
+                          <td>
+                            <a class="btn btn-success" href="/admin/user/${user.id}">View</a>
+                            <a class="btn btn-warning" href="/admin/user/update/${user.id}">Update</a>
+                            <a class="btn btn-danger" href="/admin/user/delete/${user.id}">Delete</a>
+                          </td>
+                        </tr>
+                      </c:forEach>
+                    </tbody>
+                  </table>
                 </div>
-                <div class="card" style="width: 18rem;">
-                  <div class="card-header">
-                    User Information
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">ID: ${users.id}</li>
-                    <li class="list-group-item">Email: ${users.email}</li>
-                    <li class="list-group-item">FullName: ${users.fullName}</li>
-                    <li class="list-group-item">Address: ${users.address}</li>
-                  </ul>
-                </div>
-                <a href="/admin/user" class="btn btn-success mt-3">BACK</a></BUTTON>
-
-
-
               </div>
             </div>
-
-          </div>
+          </main>
         </div>
-        </div>
-      </body>
+      </div>
 
-      </html>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+      <script src="js/scripts.js"></script>
+    </body>
+
+    </html>
