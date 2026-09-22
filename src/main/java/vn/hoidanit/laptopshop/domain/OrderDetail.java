@@ -29,7 +29,4 @@ public class OrderDetail {
   @JoinColumn(name = "product_id")
   private Product product;
 
-  // order_id: long
-  // product_id: long
-
 }
