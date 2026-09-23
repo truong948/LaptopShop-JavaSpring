@@ -104,8 +104,8 @@
                             <!-- Cột 2 hàng 3: Avatar -->
                             <div class="col-12 col-md-6">
                               <label for="avatarFile" class="form-label">Avatar:</label>
-                              <input class="form-control" type="file" id="avatarFile" name="avatarFile"
-                                accept=".png, .jpg, .jpeg">
+                              <input class="form-control" type="file" id="avatarFile" accept=".png, .jpg, .jpeg"
+                                name="hoidanitFile" />
                             </div>
 
                             <!-- Hàng 4: Address (chiếm trọn 12 cột) -->
