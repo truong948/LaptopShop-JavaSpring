@@ -14,6 +14,19 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <script>
+          $(document).ready(() => {
+            const avatarFile = $("#avatarFile");
+            avatarFile.change(function (e) {
+              const imgURL = URL.createObjectURL(e.target.files[0]);
+              $("#avatarPreview").attr("src", imgURL);
+              $("#avatarPreview").css({ "display": "block" });
+            });
+          });
+        </script>
+
       </head>
 
       <body class="sb-nav-fixed">
@@ -25,17 +38,15 @@
           <div id="layoutSidenav_content">
             <main>
               <div class="container-fluid px-4">
-                <div class="container-fluid px-4">
-                  <h1 class="mt-4">Create User</h1>
-                  <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Create</li>
-                  </ol>
-                </div>
-                <div class="mt-5">
+                <h1 class="mt-4">Create User</h1>
+                <ol class="breadcrumb mb-4">
+                  <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                  <li class="breadcrumb-item active">Create</li>
+                </ol>
+
+                <div class="mt-4 mb-5">
                   <div class="row justify-content-center">
-                    <!-- Tăng độ rộng form: col-md-8 col-lg-7 giúp form mở rộng hơn -->
-                    <div class="col-12 col-md-8 col-lg-7">
+                    <div class="col-12 col-lg-8">
 
                       <div class="card shadow-sm border-0">
                         <div class="card-header bg-primary text-white text-center py-3">
@@ -43,41 +54,69 @@
                         </div>
 
                         <div class="card-body p-4 p-md-5">
-                          <form:form action="/admin/user/create" method="post" modelAttribute="newUser">
+                          <!-- Chuyển class "row g-3" vào form:form -->
+                          <form:form action="/admin/user/create" method="post" modelAttribute="newUser" class="row g-3"
+                            enctype="multipart/form-data">
 
-                            <div class="mb-3">
+                            <!-- Cột 1 hàng 1: Email (nửa hàng bên trái) -->
+                            <div class="col-12 col-md-6">
                               <label class="form-label fw-semibold">Email address</label>
-                              <!-- Thêm form-control-lg để tăng chiều cao ô nhập -->
                               <form:input type="email" class="form-control form-control-lg" path="email"
                                 required="required" placeholder="name@example.com" />
                             </div>
 
-                            <div class="mb-3">
+                            <!-- Cột 2 hàng 1: Password (nửa hàng bên phải) -->
+                            <div class="col-12 col-md-6">
                               <label class="form-label fw-semibold">Password</label>
                               <form:input type="password" class="form-control form-control-lg" path="password"
-                                placeholder="••••••••" />
+                                required="required" placeholder="••••••••" />
                             </div>
 
-                            <div class="mb-3">
+                            <!-- Cột 1 hàng 2: Phone number -->
+                            <div class="col-12 col-md-6">
                               <label class="form-label fw-semibold">Phone number</label>
                               <form:input type="text" class="form-control form-control-lg" path="phone"
                                 placeholder="0901234567" />
                             </div>
 
-                            <div class="mb-3">
+                            <!-- Cột 2 hàng 2: Full Name -->
+                            <div class="col-12 col-md-6">
                               <label class="form-label fw-semibold">Full Name</label>
-                              <!-- Đổi path="fullname" thành path="fullName" -->
                               <form:input type="text" class="form-control form-control-lg" path="fullName"
                                 placeholder="Nguyễn Văn A" />
                             </div>
 
-                            <div class="mb-4">
+                            <div class="col-12">
                               <label class="form-label fw-semibold">Address</label>
                               <form:input type="text" class="form-control form-control-lg" path="address"
                                 placeholder="Địa chỉ thường trú" />
                             </div>
 
-                            <button type="submit" class="btn btn-primary btn-lg w-100 fw-semibold">Submit</button>
+                            <!-- Cột 1 hàng 3: Role (Select) -->
+                            <div class="col-12 col-md-6">
+                              <label class="form-label">Role:</label>
+                              <form:select class="form-select" path="">
+                                <form:option value="USER">User</form:option>
+                                <form:option value="ADMIN">Admin</form:option>
+                              </form:select>
+                            </div>
+
+                            <!-- Cột 2 hàng 3: Avatar -->
+                            <div class="col-12 col-md-6">
+                              <label for="avatarFile" class="form-label">Avatar:</label>
+                              <input class="form-control" type="file" id="avatarFile" name="avatarFile"
+                                accept=".png, .jpg, .jpeg">
+                            </div>
+
+                            <!-- Hàng 4: Address (chiếm trọn 12 cột) -->
+
+                            <div class="col-12 mb-3">
+                              <img style="max-height: 250px; display: none;" alt="avatar preview" id="avatarPreview" />
+                            </div>
+                            <!-- Nút Submit -->
+                            <div class="col-12 mt-4">
+                              <button type="submit" class="btn btn-primary btn-lg w-100 fw-semibold">Submit</button>
+                            </div>
 
                           </form:form>
                         </div>
@@ -93,7 +132,7 @@
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
           crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="/js/scripts.js"></script>
       </body>
 
       </html>
