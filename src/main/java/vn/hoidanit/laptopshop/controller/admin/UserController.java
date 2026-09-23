@@ -63,7 +63,7 @@ public class UserController {
   }
 
   @PostMapping("/admin/user/update") // Update
-  public String postUpdateUser(Model model, @ModelAttribute("new User") User hoidanit) {
+  public String postUpdateUser(Model model, @ModelAttribute("newUser") User hoidanit) {
     User currentUser = this.userService.getUserByID(hoidanit.getId());
     if (currentUser != null) {
       currentUser.setAddress(hoidanit.getAddress());
@@ -75,7 +75,7 @@ public class UserController {
   }
 
   @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
-  public String createUserPage(Model model, @ModelAttribute("new User") User hoidanit) {
+  public String createUserPage(Model model, @ModelAttribute("newUser") User hoidanit) {
     System.out.println("run here" + hoidanit);
     this.userService.handleSaveUser(hoidanit);
     return "redirect:/admin/user";

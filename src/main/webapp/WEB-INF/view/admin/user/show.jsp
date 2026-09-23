@@ -24,40 +24,48 @@
         <div id="layoutSidenav_content">
           <main>
             <div class="container-fluid px-4">
-              <h1 class="mt-4">Product</h1>
-              <div class="mb-4">product</div>
+              <!-- <div class="container-fluid px-4">
+                <h1 class="mt-4">Manager Product</h1>
+                <ol class="breadcrumb mb-4">
+                  <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                  <li class="breadcrumb-item active">Product</li>
+                </ol>
+              </div> -->
+              <div class="mt-5">
+                <div class="row">
+                  <div class="col-12 mx-auto">
+                    <h1>User</h1>
+                    <div class="d-flex justify-content-between">
+                      <h3>Table users</h3>
+                      <a href="/admin/user/create" class="btn btn-primary">Create a user</a>
+                    </div>
 
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <h2 class="mb-0">Table Users</h2>
-                <a class="btn btn-primary" href="/admin/user/create">CREATE A USER</a>
-              </div>
-
-              <div class="card mb-4">
-                <div class="card-body">
-                  <table class="table table-bordered table-hover mb-0">
-                    <thead>
-                      <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Full Name</th>
-                        <th scope="col">Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <c:forEach var="user" items="${users}">
+                    <hr />
+                    <table class="table table-bordered table-hover">
+                      <thead>
                         <tr>
-                          <th scope="row">${user.id}</th>
-                          <td>${user.email}</td>
-                          <td>${user.fullName}</td>
-                          <td>
-                            <a class="btn btn-success" href="/admin/user/${user.id}">View</a>
-                            <a class="btn btn-warning" href="/admin/user/update/${user.id}">Update</a>
-                            <a class="btn btn-danger" href="/admin/user/delete/${user.id}">Delete</a>
-                          </td>
+                          <th>ID</th>
+                          <th>Email</th>
+                          <th>Full Name</th>
+                          <th>Action</th>
                         </tr>
-                      </c:forEach>
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        <c:forEach var="user" items="${users}">
+                          <tr>
+                            <th>${user.id}</th>
+                            <td>${user.email}</td>
+                            <td>${user.fullName}</td>
+                            <td>
+                              <a href="/admin/user/${user.id}" class="btn btn-success">View</a>
+                              <a href="/admin/user/update/${user.id}" class="btn btn-warning mx-2">Update</a>
+                              <a href="/admin/user/delete/${user.id}" class="btn btn-danger">Delete</a>
+                            </td>
+                          </tr>
+                        </c:forEach>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
