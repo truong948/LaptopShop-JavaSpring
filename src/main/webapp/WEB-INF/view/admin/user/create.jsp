@@ -95,7 +95,7 @@
                             <!-- Cột 1 hàng 3: Role (Select) -->
                             <div class="col-12 col-md-6">
                               <label class="form-label">Role:</label>
-                              <form:select class="form-select" path="">
+                              <form:select class="form-select" path="role.name">
                                 <form:option value="USER">User</form:option>
                                 <form:option value="ADMIN">Admin</form:option>
                               </form:select>
