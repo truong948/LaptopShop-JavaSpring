@@ -76,8 +76,11 @@
                     <select id="factory" name="factory" class="form-select form-select-lg">
                       <option selected>Apple (MacBook)</option>
                       <option>Asus</option>
+                      <option>Acer</option>
+                      <option>LG</option>
                       <option>Dell</option>
                       <option>Lenovo</option>
+
                     </select>
                   </div>
 
@@ -85,9 +88,10 @@
                     <label for="target" class="form-label fs-4 mb-2">Target:</label>
                     <select id="target" name="target" class="form-select form-select-lg">
                       <option selected>Gaming</option>
-                      <option>Office</option>
-                      <option>Design</option>
-                      <option>Student</option>
+                      <option>Sinh viên - Văn phòng</option>
+                      <option>Mỏng nhẹ</option>
+                      <option>Doanh nhân</option>
+                      <option>Thiết kế đề họa</option>
                     </select>
                   </div>
 
