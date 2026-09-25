@@ -37,94 +37,74 @@
 
           <div id="layoutSidenav_content">
             <main>
-              <div class="container-fluid px-4">
-                <h1 class="mt-4">Create User</h1>
-                <ol class="breadcrumb mb-4">
-                  <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                  <li class="breadcrumb-item active">Create</li>
-                </ol>
+              <div class="container-fluid px-4 py-4">
+                <h1 class="display-5 fw-bold mb-4">Create a product</h1>
+                <hr class="mb-4" />
 
-                <div class="mt-4 mb-5">
-                  <div class="row justify-content-center">
-                    <div class="col-12 col-lg-8">
+                <form action="/admin/product/create" method="post" enctype="multipart/form-data" class="row g-4">
+                  <div class="col-md-6">
+                    <label for="name" class="form-label fs-4 mb-2">
+                      <span class="bg-primary text-white px-2 py-1 rounded">Name:</span>
+                    </label>
+                    <input type="text" id="name" name="name" class="form-control form-control-lg" />
+                  </div>
 
-                      <div class="card shadow-sm border-0">
-                        <div class="card-header bg-primary text-white text-center py-3">
-                          <h4 class="mb-0 fw-bold">Create A User</h4>
-                        </div>
+                  <div class="col-md-6">
+                    <label for="price" class="form-label fs-4 mb-2">Price:</label>
+                    <input type="number" id="price" name="price" value="0.0" class="form-control form-control-lg" />
+                  </div>
 
-                        <div class="card-body p-4 p-md-5">
-                          <!-- Chuyển class "row g-3" vào form:form -->
-                          <form:form action="/admin/user/create" method="post" modelAttribute="" class="row g-3"
-                            enctype="multipart/form-data">
+                  <div class="col-12">
+                    <label for="detailDescription" class="form-label fs-4 mb-2">Detail description:</label>
+                    <textarea id="detailDescription" name="detailDescription" class="form-control form-control-lg"
+                      rows="4"></textarea>
+                  </div>
 
-                            <!-- Cột 1 hàng 1: Email (nửa hàng bên trái) -->
-                            <div class="col-12 col-md-6">
-                              <label class="form-label fw-semibold">Name</label>
-                              <form:input type="text" class="form-control form-control-lg" path="email"
-                                required="required" placeholder="name@example.com" />
-                            </div>
+                  <div class="col-md-6">
+                    <label for="shortDescription" class="form-label fs-4 mb-2">Short description:</label>
+                    <input type="text" id="shortDescription" name="shortDescription"
+                      class="form-control form-control-lg" />
+                  </div>
 
-                            <!-- Cột 2 hàng 1: Password (nửa hàng bên phải) -->
-                            <div class="col-12 col-md-6">
-                              <label class="form-label fw-semibold">Prices:</label>
-                              <form:input type="number" class="form-control form-control-lg" path="password"
-                                required="required" placeholder="0.0" />
-                            </div>
+                  <div class="col-md-6">
+                    <label for="quantity" class="form-label fs-4 mb-2">Quantity:</label>
+                    <input type="number" id="quantity" name="quantity" value="0" class="form-control form-control-lg" />
+                  </div>
 
-                            <!-- Cột 1 hàng 2: Phone number -->
-                            <div class="col-12 col-md-6">
-                              <label class="form-label fw-semibold">Details Decscription:</label>
-                              <form:input type="textarea" class="form-control form-control-lg" path="phone"
-                                placeholder="0901234567" />
-                            </div>
+                  <div class="col-md-6">
+                    <label for="factory" class="form-label fs-4 mb-2">Factory:</label>
+                    <select id="factory" name="factory" class="form-select form-select-lg">
+                      <option selected>Apple (MacBook)</option>
+                      <option>Asus</option>
+                      <option>Dell</option>
+                      <option>Lenovo</option>
+                    </select>
+                  </div>
 
-                            <!-- Cột 2 hàng 2: Full Name -->
-                            <div class="col-12 col-md-6">
-                              <label class="form-label fw-semibold">shortDesc</label>
-                              <form:input type="text" class="form-control form-control-lg" path="fullName"
-                                placeholder="Nguyễn Văn A" />
-                            </div>
+                  <div class="col-md-6">
+                    <label for="target" class="form-label fs-4 mb-2">Target:</label>
+                    <select id="target" name="target" class="form-select form-select-lg">
+                      <option selected>Gaming</option>
+                      <option>Office</option>
+                      <option>Design</option>
+                      <option>Student</option>
+                    </select>
+                  </div>
 
-                            <div class="col-12">
-                              <label class="form-label fw-semibold">quantity</label>
-                              <form:input type="text" class="form-control form-control-lg" path="address"
-                                placeholder="Địa chỉ thường trú" />
-                            </div>
-
-                            <!-- Cột 1 hàng 3: Role (Select) -->
-                            <div class="col-12 col-md-6">
-                              <label class="form-label">Role:</label>
-                              <form:select class="form-select" path="role.name">
-                                <form:option value="USER">User</form:option>
-                                <form:option value="ADMIN">Admin</form:option>
-                              </form:select>
-                            </div>
-
-                            <!-- Cột 2 hàng 3: Avatar -->
-                            <div class="col-12 col-md-6">
-                              <label for="avatarFile" class="form-label">Avatar:</label>
-                              <input class="form-control" type="file" id="avatarFile" accept=".png, .jpg, .jpeg"
-                                name="hoidanitFile" />
-                            </div>
-
-                            <!-- Hàng 4: Address (chiếm trọn 12 cột) -->
-
-                            <div class="col-12 mb-3">
-                              <img style="max-height: 250px; display: none;" alt="avatar preview" id="avatarPreview" />
-                            </div>
-                            <!-- Nút Submit -->
-                            <div class="col-12 mt-4">
-                              <button type="submit" class="btn btn-primary btn-lg w-100 fw-semibold">Submit</button>
-                            </div>
-
-                          </form:form>
-                        </div>
-                      </div>
-
+                  <div class="col-12">
+                    <label for="image" class="form-label fs-4 mb-2">Image:</label>
+                    <div class="d-flex align-items-center gap-3">
+                      <label for="image" class="btn btn-light border border-secondary-subtle px-4 py-3 fs-5">Choose
+                        File</label>
+                      <input type="file" id="image" name="image" class="d-none" />
+                      <span class="text-secondary fs-5">No fil...hosen</span>
                     </div>
                   </div>
-                </div>
+
+                  <div class="col-12 mt-3">
+                    <button type="submit" class="btn btn-primary px-4 py-2 fs-5">Create</button>
+                  </div>
+                </form>
               </div>
             </main>
           </div>
@@ -132,7 +112,6 @@
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
           crossorigin="anonymous"></script>
-        <script src="/js/scripts.js"></script>
       </body>
 
       </html>
