@@ -45,9 +45,9 @@
                       <thead>
                         <tr>
                           <th>ID</th>
-                          <th>Email</th>
-                          <th>Full Name</th>
-                          <th>Role</th>
+                          <th>Name</th>
+                          <th>Price</th>
+                          <th>Factory</th>
                           <th>Action</th>
                         </tr>
                       </thead>

@@ -41,7 +41,8 @@
                 <h1 class="display-5 fw-bold mb-4">Create a product</h1>
                 <hr class="mb-4" />
 
-                <form action="/admin/product/create" method="post" enctype="multipart/form-data" class="row g-4">
+                <form action="/admin/product/create" method="post" enctype="multipart/form-data" class="row g-4"
+                  enctype="multipart/form-data" modelAttribute="newProduct">
                   <div class="col-md-6">
                     <label for="name" class="form-label fs-4 mb-2">
                       <span class="bg-primary text-white px-2 py-1 rounded">Name:</span>
