@@ -42,7 +42,7 @@ public class ProductController {
   @PostMapping("/admin/product/create")
   public String createProduct(Model model, @ModelAttribute("newProduct") Product hoidanit,
       @RequestParam("hoidanitFile") MultipartFile file) {
-    String productImage = this.uploadService.handleSaveUploadFile(file, "productImage");
+    String productImage = this.uploadService.handleSaveUploadFile(file, "product");
     model.addAttribute("newProduct", new Product());
     hoidanit.setImage(productImage);
     this.productService.handleSaveProduct(hoidanit);
