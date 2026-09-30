@@ -18,11 +18,11 @@
 
         <script>
           $(document).ready(() => {
-            const avatarFile = $("#avatarFile");
-            avatarFile.change(function (e) {
+            const productFile = $("#productFile");
+            productFile.change(function (e) {
               const imgURL = URL.createObjectURL(e.target.files[0]);
-              $("#avatarPreview").attr("src", imgURL);
-              $("#avatarPreview").css({ "display": "block" });
+              $("#productPreview").attr("src", imgURL);
+              $("#productPreview").css({ "display": "block" });
             });
           });
         </script>
@@ -41,8 +41,8 @@
                 <h1 class="display-5 fw-bold mb-4">Create a product</h1>
                 <hr class="mb-4" />
 
-                <form action="/admin/product/create" method="post" enctype="multipart/form-data" class="row g-4"
-                  enctype="multipart/form-data" modelAttribute="newProduct">
+                <form action="/admin/product/create" method="post" enctype="multipart/form-data"
+                  modelAttribute="newProduct" class="row g-4" enctype="multipart/form-data">
                   <div class="col-md-6">
                     <label for="name" class="form-label fs-4 mb-2">
                       <span class="bg-primary text-white px-2 py-1 rounded">Name:</span>
@@ -57,14 +57,13 @@
 
                   <div class="col-12">
                     <label for="detailDescription" class="form-label fs-4 mb-2">Detail description:</label>
-                    <textarea id="detailDescription" name="detailDescription" class="form-control form-control-lg"
+                    <textarea id="detailDescription" name="detailDesc" class="form-control form-control-lg"
                       rows="4"></textarea>
                   </div>
 
                   <div class="col-md-6">
                     <label for="shortDescription" class="form-label fs-4 mb-2">Short description:</label>
-                    <input type="text" id="shortDescription" name="shortDescription"
-                      class="form-control form-control-lg" />
+                    <input type="text" id="shortDescription" name="shortDesc" class="form-control form-control-lg" />
                   </div>
 
                   <div class="col-md-6">
@@ -101,11 +100,15 @@
                     <div class="d-flex align-items-center gap-3">
                       <label for="image" class="btn btn-light border border-secondary-subtle px-4 py-3 fs-5">Choose
                         File</label>
-                      <input type="file" id="image" name="image" class="d-none" />
+                      <input type="file" id="image" class="form-control" name="hoidanitFile" type="file"
+                        accept=".png, .jpg, .jpeg" />
                       <span class="text-secondary fs-5">No fil...hosen</span>
                     </div>
                   </div>
-
+                  <div class="col-12 mb-3">
+                    <img style="max-height: 250px; display: none;" alt="product preview" id="productPreview" />
+                  </div>
+                  <!-- <input class="form-control" type="file" id="avatarFile" accept=".png, .jpg, .jpeg" name="hoidanitFile" /> -->
                   <div class="col-12 mt-3">
                     <button type="submit" class="btn btn-primary px-4 py-2 fs-5">Create</button>
                   </div>

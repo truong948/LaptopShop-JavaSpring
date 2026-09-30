@@ -21,4 +21,9 @@ public class ProductService {
   public List<Product> getAllProduct() {
     return this.productRepository.findAll();
   }
+
+  public Product handleSaveProduct(Product product) {
+    Product item = this.productRepository.save(product);
+    return item;
+  }
 }

@@ -34,10 +34,10 @@
               <div class="mt-5">
                 <div class="row">
                   <div class="col-12 mx-auto">
-                    <h1>User</h1>
+                    <h1>Product</h1>
                     <div class="d-flex justify-content-between">
-                      <h3>Table users</h3>
-                      <a href="/admin/product/create" class="btn btn-primary">Create a user</a>
+                      <h3>Product users</h3>
+                      <a href="/admin/product/create" class="btn btn-primary">Create a product</a>
                     </div>
 
                     <hr />
@@ -47,17 +47,29 @@
                           <th>ID</th>
                           <th>Name</th>
                           <th>Price</th>
+                          <!-- <th>Image</th> -->
+                          <th>Detail Desc</th>
+                          <th>Short Desc</th>
+                          <th>Quantity</th>
+                          <th>Sold</th>
                           <th>Factory</th>
+                          <th>Target</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <c:forEach var="user" items="${users}">
+                        <c:forEach var="product" items="${products}">
                           <tr>
-                            <th>${user.id}</th>
-                            <td>${user.email}</td>
-                            <td>${user.fullName}</td>
-                            <td>${user.role.name}</td>
+                            <th>${product.id}</th>
+                            <td>${product.name}</td>
+                            <td>${product.price}</td>
+                            <!-- <td>${product.image}</td> -->
+                            <td>${product.detailDesc}</td>
+                            <td>${product.shortDesc}</td>
+                            <td>${product.quantity}</td>
+                            <td>${product.sold}</td>
+                            <td>${product.factory}</td>
+                            <td>${product.target}</td>
                             <td>
                               <a href="/admin/user/${user.id}" class="btn btn-success">View</a>
                               <a href="/admin/user/update/${user.id}" class="btn btn-warning mx-2">Update</a>
