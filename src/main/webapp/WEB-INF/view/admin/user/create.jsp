@@ -61,15 +61,26 @@
                             <!-- Cột 1 hàng 1: Email (nửa hàng bên trái) -->
                             <div class="col-12 col-md-6">
                               <label class="form-label fw-semibold">Email address</label>
-                              <form:input type="email" class="form-control form-control-lg" path="email"
-                                required="required" placeholder="name@example.com" />
+                              <c:set var="errorEmail">
+                                <form:errors path="email" cssClass="invalid-feedback" />
+                              </c:set>
+                              <form:input type="email" class="form-control ${not empty errorEmail ? 'is-invalid':''}"
+                                path="email" />
+                              <form:errors path="email" />
+                              ${errorEmail}
                             </div>
 
                             <!-- Cột 2 hàng 1: Password (nửa hàng bên phải) -->
                             <div class="col-12 col-md-6">
                               <label class="form-label fw-semibold">Password</label>
-                              <form:input type="password" class="form-control form-control-lg" path="password"
-                                required="required" placeholder="••••••••" />
+                              <c:set var="errorPassword">
+                                <form:errors path="password" cssClass="invalid-feedback" />
+                              </c:set>
+                              <form:input type="password"
+                                class="form-control ${not empty errorPassword ? 'is-invalid':''}" path="password" />
+                              ${errorPassword}
+
+
                             </div>
 
                             <!-- Cột 1 hàng 2: Phone number -->
@@ -82,8 +93,12 @@
                             <!-- Cột 2 hàng 2: Full Name -->
                             <div class="col-12 col-md-6">
                               <label class="form-label fw-semibold">Full Name</label>
-                              <form:input type="text" class="form-control form-control-lg" path="fullName"
-                                placeholder="Nguyễn Văn A" />
+                              <c:set var="errorFullName">
+                                <form:errors path="fullName" cssClass="invalid-feedback" />
+                              </c:set>
+                              <form:input type="text" class="form-control ${not empty errorFullName? 'is-invalid':''}"
+                                path="fullName" placeholder="Nguyễn Văn A" />
+                              ${errorFullName}
                             </div>
 
                             <div class="col-12">
