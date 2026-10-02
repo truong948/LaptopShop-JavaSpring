@@ -109,12 +109,14 @@
                                                                 style="top: 10px; left: 10px;">Laptop</div>
                                                             <div
                                                                 class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                                <h4>${product.name}</h4>
-                                                                <p>${product.shortDesc}</p>
+                                                                <h4 style="font-size:15px;">${product.name}</h4>
+                                                                <p style="font-size:13px;">${product.shortDesc}</p>
                                                                 <div
                                                                     class="d-flex justify-content-between flex-lg-wrap">
-                                                                    <p class="text-dark fs-5 fw-bold mb-0">
-                                                                        ${product.price}
+                                                                    <p style="font-size: 15px; text-align: center; width: 100%;"
+                                                                        class="text-dark fw-bold mb-3">
+                                                                        <fmt:formatNumber type="number"
+                                                                            value="${product.price}" /> đ
                                                                     </p>
                                                                     <a href="#"
                                                                         class="btn border border-secondary rounded-pill px-3 text-primary"><i
