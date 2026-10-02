@@ -20,7 +20,9 @@
           $(document).ready(() => {
             const productFile = $("#productFile");
             productFile.change(function (e) {
-              const imgURL = URL.createObjectURL(e.target.files[0]);
+              const file = e.target.files[0];
+              if (!file) return;
+              const imgURL = URL.createObjectURL(file);
               $("#productPreview").attr("src", imgURL);
               $("#productPreview").css({ "display": "block" });
             });
@@ -120,13 +122,14 @@
                   </div>
 
                   <div class="col-12">
-                    <label for="image" class="form-label fs-4 mb-2">Image:</label>
+                    <label for="productFile" class="form-label fs-4 mb-2">Image:</label>
                     <div class="d-flex align-items-center gap-3">
-                      <label for="image" class="btn btn-light border border-secondary-subtle px-4 py-3 fs-5">Choose
+                      <label for="productFile"
+                        class="btn btn-light border border-secondary-subtle px-4 py-3 fs-5">Choose
                         File</label>
-                      <input type="file" id="image" class="form-control" name="hoidanitFile" type="file"
+                      <input type="file" id="productFile" class="form-control" name="hoidanitFile"
                         accept=".png, .jpg, .jpeg" />
-                      <span class="text-secondary fs-5">No fil...hosen</span>
+                      <span class="text-secondary fs-5">No file chosen</span>
                     </div>
                   </div>
                   <div class="col-12 mb-3">

@@ -14,6 +14,25 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+          $(document).ready(() => {
+            const productFile = $("#productFile");
+            productFile.change(function (e) {
+              const file = e.target.files[0];
+              if (!file) return;
+              const imgURL = URL.createObjectURL(file);
+              $("#productPreview").attr("src", imgURL);
+              $("#productPreview").css({ "display": "block" });
+            });
+
+            const currentImage = "${newProduct.image}";
+            if (currentImage && currentImage !== '') {
+              $("#productPreview").attr("src", currentImage.startsWith('/') ? currentImage : '/images/product/' + currentImage);
+              $("#productPreview").css({ "display": "block" });
+            }
+          });
+        </script>
       </head>
 
       <body class="sb-nav-fixed">
@@ -42,11 +61,13 @@
                         </div>
 
                         <div class="card-body p-4 p-md-5">
-                          <form:form action="/admin/product/update" method="post" modelAttribute="newProduct">
+                          <form:form action="/admin/product/update" method="post" modelAttribute="newProduct"
+                            enctype="multipart/form-data">
 
                             <div class="mb-3" style="display:none;">
                               <label class="form-label fw-semibold">Id</label>
                               <form:input type="text" class="form-control form-control-lg" path="id" />
+                              <form:hidden path="image" />
                             </div>
 
                             <div class="mb-3">
@@ -87,6 +108,17 @@
                             <div class="mb-4">
                               <label class="form-label fw-semibold">Target</label>
                               <form:input type="text" class="form-control form-control-lg" path="target" />
+                            </div>
+
+                            <div class="mb-4">
+                              <label for="productFile" class="form-label fw-semibold">Product Image</label>
+                              <input type="file" id="productFile" class="form-control form-control-lg"
+                                name="hoidanitFile" accept=".png, .jpg, .jpeg" />
+                            </div>
+
+                            <div class="mb-4">
+                              <img style="max-height: 250px; display: none;" alt="product preview"
+                                id="productPreview" />
                             </div>
 
                             <button type="submit" class="btn btn-primary btn-lg w-100 fw-semibold">Submit</button>

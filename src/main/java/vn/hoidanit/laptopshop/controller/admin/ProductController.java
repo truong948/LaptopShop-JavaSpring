@@ -43,17 +43,18 @@ public class ProductController {
   }
 
   @PostMapping("/admin/product/create")
-  public String createProduct(Model model, @ModelAttribute("newProduct") @Valid Product hoidanit,
-      BindingResult bindingResult, @RequestParam("hoidanitFile") MultipartFile file) {
+  public String createProduct(Model model, @ModelAttribute("newProduct") @Valid Product pr,
+      BindingResult bindingResult, @RequestParam(value = "hoidanitFile", required = false) MultipartFile file) {
 
     if (bindingResult.hasErrors()) {
       return "admin/product/create";
     }
 
-    String productImage = this.uploadService.handleSaveUploadFile(file, "product");
-    hoidanit.setImage(productImage);
-    this.productService.handleSaveProduct(hoidanit);
-
+    if (file != null && !file.isEmpty()) {
+      String productImage = this.uploadService.handleSaveUploadFile(file, "product");
+      pr.setImage(productImage);
+    }
+    this.productService.handleSaveProduct(pr);
     return "redirect:/admin/product";
   }
 
@@ -72,16 +73,28 @@ public class ProductController {
     return "admin/product/update";
   }
 
-  @PostMapping("/admin/product/update") // Update
-  public String postUpdateProduct(Model model, @ModelAttribute("newProduct") Product hoidanit) {
+  @PostMapping(value = "/admin/product/update") // Update
+  public String postUpdateProduct(Model model, @ModelAttribute("newProduct") Product hoidanit,
+      @RequestParam(value = "hoidanitFile", required = false) MultipartFile file) {
     Product currentProduct = this.productService.getProductByID(hoidanit.getId());
-    // if (currentUser != null) {
-    // currentUser.setAddress(hoidanit.getAddress());
-    // currentUser.setFullName(hoidanit.getFullName());
-    // currentUser.setPhone(hoidanit.getPhone());
+    if (currentProduct != null) {
+      currentProduct.setName(hoidanit.getName());
+      currentProduct.setPrice(hoidanit.getPrice());
+      currentProduct.setDetailDesc(hoidanit.getDetailDesc());
+      currentProduct.setShortDesc(hoidanit.getShortDesc());
+      currentProduct.setQuantity(hoidanit.getQuantity());
+      currentProduct.setSold(hoidanit.getSold());
+      currentProduct.setFactory(hoidanit.getFactory());
+      currentProduct.setTarget(hoidanit.getTarget());
 
-    // }
-    this.productService.handleSaveProduct(currentProduct);
+      if (file != null && !file.isEmpty()) {
+        currentProduct.setImage(this.uploadService.handleSaveUploadFile(file, "product"));
+      } else if (hoidanit.getImage() != null && !hoidanit.getImage().isBlank()) {
+        currentProduct.setImage(hoidanit.getImage());
+      }
+
+      this.productService.handleSaveProduct(currentProduct);
+    }
     return "redirect:/admin/product";
   }
 

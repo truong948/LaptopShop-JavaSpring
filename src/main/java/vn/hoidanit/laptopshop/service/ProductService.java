@@ -34,4 +34,12 @@ public class ProductService {
   public void deleteProductById(long id) {
     this.productRepository.deleteById(id);
   }
+
+  public Product createProduct(Product pr) {
+    return this.productRepository.save(pr);
+  }
+
+  public List<Product> fetchProducts() {
+    return this.productRepository.findAll();
+  }
 }
