@@ -59,10 +59,30 @@ public class ProductController {
 
   @GetMapping("/admin/product/{id}")
   public String getProductDetailPage(Model model, @PathVariable long id) {
-    Product products = this.productService.getUserByID(id);
+    Product products = this.productService.getProductByID(id);
     model.addAttribute("products", products);
     model.addAttribute("id", id);
     return "admin/product/detail";
+  }
+
+  @RequestMapping("/admin/product/update/{id}") // Update
+  public String getUpdateUserProduct(Model model, @PathVariable long id) {
+    Product currentProduct = this.productService.getProductByID(id);
+    model.addAttribute("newProduct", currentProduct);
+    return "admin/product/update";
+  }
+
+  @PostMapping("/admin/product/update") // Update
+  public String postUpdateProduct(Model model, @ModelAttribute("newProduct") Product hoidanit) {
+    Product currentProduct = this.productService.getProductByID(hoidanit.getId());
+    // if (currentUser != null) {
+    // currentUser.setAddress(hoidanit.getAddress());
+    // currentUser.setFullName(hoidanit.getFullName());
+    // currentUser.setPhone(hoidanit.getPhone());
+
+    // }
+    this.productService.handleSaveProduct(currentProduct);
+    return "redirect:/admin/product";
   }
 
 }
