@@ -8,4 +8,6 @@ import vn.hoidanit.laptopshop.domain.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
   List<Product> findAll();
+
+  Product findById(long id);
 }

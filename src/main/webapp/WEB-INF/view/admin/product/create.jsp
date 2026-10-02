@@ -41,34 +41,58 @@
                 <h1 class="display-5 fw-bold mb-4">Create a product</h1>
                 <hr class="mb-4" />
 
-                <form action="/admin/product/create" method="post" enctype="multipart/form-data"
-                  modelAttribute="newProduct" class="row g-4" enctype="multipart/form-data">
+                <form:form action="/admin/product/create" method="post" enctype="multipart/form-data"
+                  modelAttribute="newProduct" cssClass="row g-4">
+                  <c:set var="errorName">
+                    <form:errors path="name" cssClass="invalid-feedback" />
+                  </c:set>
+                  <c:set var="errorPrice">
+                    <form:errors path="price" cssClass="invalid-feedback" />
+                  </c:set>
+                  <c:set var="errorDetailDesc">
+                    <form:errors path="detailDesc" cssClass="invalid-feedback" />
+                  </c:set>
+                  <c:set var="errorShortDesc">
+                    <form:errors path="shortDesc" cssClass="invalid-feedback" />
+                  </c:set>
+                  <c:set var="errorQuantity">
+                    <form:errors path="quantity" cssClass="invalid-feedback" />
+                  </c:set>
                   <div class="col-md-6">
                     <label for="name" class="form-label fs-4 mb-2">
                       <span class="bg-primary text-white px-2 py-1 rounded">Name:</span>
                     </label>
-                    <input type="text" id="name" name="name" class="form-control form-control-lg" />
+                    <form:input path="name" id="name"
+                      cssClass="form-control ${not empty errorName ? 'is-invalid' : ''}" />
+                    ${errorName}
                   </div>
 
                   <div class="col-md-6">
                     <label for="price" class="form-label fs-4 mb-2">Price:</label>
-                    <input type="number" id="price" name="price" value="0.0" class="form-control form-control-lg" />
+                    <form:input path="price" id="price" type="number" value="0.0"
+                      cssClass="form-control ${not empty errorPrice ? 'is-invalid' : ''}" />
+                    ${errorPrice}
                   </div>
 
                   <div class="col-12">
                     <label for="detailDescription" class="form-label fs-4 mb-2">Detail description:</label>
-                    <textarea id="detailDescription" name="detailDesc" class="form-control form-control-lg"
-                      rows="4"></textarea>
+                    <form:textarea path="detailDesc" id="detailDescription"
+                      cssClass="form-control ${not empty errorDetailDesc ? 'is-invalid' : ''}" rows="4"></form:textarea>
+                    ${errorDetailDesc}
                   </div>
 
                   <div class="col-md-6">
                     <label for="shortDescription" class="form-label fs-4 mb-2">Short description:</label>
-                    <input type="text" id="shortDescription" name="shortDesc" class="form-control form-control-lg" />
+                    <form:input path="shortDesc" type="text" id="shortDescription"
+                      cssClass="form-control ${not empty errorShortDesc ? 'is-invalid' : ''}" />
+                    ${errorShortDesc}
                   </div>
 
                   <div class="col-md-6">
                     <label for="quantity" class="form-label fs-4 mb-2">Quantity:</label>
-                    <input type="number" id="quantity" name="quantity" value="0" class="form-control form-control-lg" />
+                    <form:input path="quantity" type="number" id="quantity" value="0"
+                      cssClass="form-control ${not empty errorQuantity ? 'is-invalid' : ''}" />
+                    ${errorQuantity}
                   </div>
 
                   <div class="col-md-6">
@@ -112,7 +136,7 @@
                   <div class="col-12 mt-3">
                     <button type="submit" class="btn btn-primary px-4 py-2 fs-5">Create</button>
                   </div>
-                </form>
+                </form:form>
               </div>
             </main>
           </div>

@@ -66,7 +66,6 @@
                               </c:set>
                               <form:input type="email" class="form-control ${not empty errorEmail ? 'is-invalid':''}"
                                 path="email" />
-                              <form:errors path="email" />
                               ${errorEmail}
                             </div>
 

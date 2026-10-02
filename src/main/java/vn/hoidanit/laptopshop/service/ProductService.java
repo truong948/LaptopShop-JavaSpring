@@ -26,4 +26,8 @@ public class ProductService {
     Product item = this.productRepository.save(product);
     return item;
   }
+
+  public Product getUserByID(long id) {
+    return this.productRepository.getById(id);
+  }
 }

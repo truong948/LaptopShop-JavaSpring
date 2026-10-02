@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -40,15 +43,26 @@ public class ProductController {
   }
 
   @PostMapping("/admin/product/create")
-  public String createProduct(Model model, @ModelAttribute("newProduct") Product hoidanit,
-      @RequestParam("hoidanitFile") MultipartFile file) {
+  public String createProduct(Model model, @ModelAttribute("newProduct") @Valid Product hoidanit,
+      BindingResult bindingResult, @RequestParam("hoidanitFile") MultipartFile file) {
+
+    if (bindingResult.hasErrors()) {
+      return "admin/product/create";
+    }
+
     String productImage = this.uploadService.handleSaveUploadFile(file, "product");
-    model.addAttribute("newProduct", new Product());
     hoidanit.setImage(productImage);
     this.productService.handleSaveProduct(hoidanit);
 
-    return "admin/product/create";
+    return "redirect:/admin/product";
+  }
 
+  @GetMapping("/admin/product/{id}")
+  public String getProductDetailPage(Model model, @PathVariable long id) {
+    Product products = this.productService.getUserByID(id);
+    model.addAttribute("products", products);
+    model.addAttribute("id", id);
+    return "admin/product/detail";
   }
 
 }
