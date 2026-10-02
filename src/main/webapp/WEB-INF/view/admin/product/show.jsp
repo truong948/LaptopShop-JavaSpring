@@ -36,7 +36,7 @@
                   <div class="col-12 mx-auto">
                     <h1>Product</h1>
                     <div class="d-flex justify-content-between">
-                      <h3>Product users</h3>
+                      <h3>Product Management</h3>
                       <a href="/admin/product/create" class="btn btn-primary">Create a product</a>
                     </div>
 
