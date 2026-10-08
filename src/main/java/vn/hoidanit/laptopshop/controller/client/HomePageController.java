@@ -13,7 +13,8 @@ import vn.hoidanit.laptopshop.domain.dto.RegisterDTO;
 import vn.hoidanit.laptopshop.service.ProductService;
 import vn.hoidanit.laptopshop.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import jakarta.validation.Valid;
+import org.springframework.validation.BindingResult;
 
 @Controller
 public class HomePageController {
@@ -41,12 +42,34 @@ public class HomePageController {
   }
 
   @PostMapping("/register")
-  public String handleRegister(@ModelAttribute("registerUser") RegisterDTO registerDTO) {
+  public String handleRegister(@Valid @ModelAttribute("registerUser") RegisterDTO registerDTO,
+      BindingResult bindingResult, Model model) {
+    // server-side validation: if DTO has field errors, return to register page and
+    // show errors
+    if (bindingResult.hasErrors()) {
+      return "client/auth/register";
+    }
+    // validate combined full name length to match User entity constraint
+    String fullName = (registerDTO.getFirstName() == null ? "" : registerDTO.getFirstName().trim()) + " "
+        + (registerDTO.getLastName() == null ? "" : registerDTO.getLastName().trim());
+    if (fullName.trim().length() < 3) {
+      bindingResult.rejectValue("firstName", "fullName.short", "Fullname phải có tối thiểu 3 ký tự");
+      return "client/auth/register";
+    }
+
+    // ensure password and confirmPassword match before creating User
+    String pass = registerDTO.getPassword();
+    String confirm = registerDTO.getConfirmPassword();
+    if (pass == null || confirm == null || !pass.equals(confirm)) {
+      bindingResult.rejectValue("confirmPassword", "password.mismatch",
+          "Mật khẩu và xác nhận mật khẩu phải giống nhau");
+      return "client/auth/register";
+    }
+
     User user = this.userService.registerDTOtoUser(registerDTO);
     String hashPassword = this.passwordEncoder.encode(user.getPassword());
     user.setPassword(hashPassword);
     user.setRole(this.userService.getRoleByName("User"));
-    // hoidanit.setRole(this.userService.getRoleByName(hoidanit.getRole().getName()));
     this.userService.handleSaveUser(user);
     return "redirect:/login";
   }

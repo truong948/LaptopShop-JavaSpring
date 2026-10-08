@@ -35,6 +35,7 @@
                                   <form:input class="form-control" id="inputFirstName" type="text"
                                     placeholder="Enter your first name" path="firstName" />
                                   <label for="inputFirstName">First name</label>
+                                  <form:errors path="firstName" cssClass="text-danger" />
                                 </div>
                               </div>
                               <div class="col-md-6">
@@ -42,6 +43,7 @@
                                   <form:input class="form-control" id="inputLastName" type="text"
                                     placeholder="Enter your last name" path="lastName" />
                                   <label for="inputLastName">Last name</label>
+                                  <form:errors path="lastName" cssClass="text-danger" />
                                 </div>
                               </div>
                             </div>
@@ -49,6 +51,7 @@
                               <form:input class="form-control" id="inputEmail" type="email"
                                 placeholder="name@example.com" path="email" />
                               <label for="inputEmail">Email address</label>
+                              <form:errors path="email" cssClass="text-danger" />
                             </div>
                             <div class="row mb-3">
                               <div class="col-md-6">
@@ -56,6 +59,8 @@
                                   <form:input class="form-control" id="inputPassword" type="password"
                                     placeholder="Create a password" path="password" />
                                   <label for="inputPassword">Password</label>
+                                  <form:errors path="password" cssClass="text-danger" />
+                                  <form:errors path="confirmPassword" cssClass="text-danger" />
                                 </div>
                               </div>
                               <div class="col-md-6">
