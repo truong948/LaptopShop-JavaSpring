@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import vn.hoidanit.laptopshop.domain.Product;
@@ -14,7 +15,6 @@ import vn.hoidanit.laptopshop.service.ProductService;
 import vn.hoidanit.laptopshop.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import jakarta.validation.Valid;
-import org.springframework.validation.BindingResult;
 
 @Controller
 public class HomePageController {
@@ -49,6 +49,7 @@ public class HomePageController {
     if (bindingResult.hasErrors()) {
       return "client/auth/register";
     }
+
     // validate combined full name length to match User entity constraint
     String fullName = (registerDTO.getFirstName() == null ? "" : registerDTO.getFirstName().trim()) + " "
         + (registerDTO.getLastName() == null ? "" : registerDTO.getLastName().trim());
@@ -65,7 +66,6 @@ public class HomePageController {
           "Mật khẩu và xác nhận mật khẩu phải giống nhau");
       return "client/auth/register";
     }
-
     User user = this.userService.registerDTOtoUser(registerDTO);
     String hashPassword = this.passwordEncoder.encode(user.getPassword());
     user.setPassword(hashPassword);
