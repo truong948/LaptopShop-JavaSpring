@@ -7,20 +7,16 @@ import vn.hoidanit.laptopshop.service.validator.RegisterChecked;
 
 @RegisterChecked
 public class RegisterDTO {
-  @NotBlank(message = "First name không được để trống")
+  @Size(min = 3, message = "FirstName phải có tối thiểu 3 ký tự")
   private String firstName;
 
-  @NotBlank(message = "Last name không được để trống")
   private String lastName;
 
-  @NotBlank(message = "Email không được để trống")
-  @Email(message = "Email không hợp lệ")
+  @Email(message = "Email không hợp lệ", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
   private String email;
-
-  @NotBlank(message = "Password không được để trống")
-  @Size(min = 2, message = "Password phải có tối thiểu 2 ký tự")
   private String password;
 
+  @Size(min = 3, message = "confirmPassword phải có tối thiểu 3 ký tự")
   private String confirmPassword;
 
   public String getFirstName() {
