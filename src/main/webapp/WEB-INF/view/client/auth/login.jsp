@@ -43,7 +43,7 @@
                           </div>
                           <div><input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /></div>
                           <div class="d-grid">
-                            <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                            <button type="submit" class="btn btn-primary btn-block">Login</button>
                           </div>
                         </form>
                       </div>
