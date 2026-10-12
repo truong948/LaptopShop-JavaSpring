@@ -27,9 +27,12 @@
                         <h3 class="text-center font-weight-light my-4">Login</h3>
                       </div>
                       <div class="card-body">
-                        <form path="post" action="/login">
+                        <form method="post" action="${pageContext.request.contextPath}/login">
                           <c:if test="${param.error != null}">
                             <div class="my-2" style="color: red;">Invalid email or password.</div>
+                          </c:if>
+                          <c:if test="${param.error != null}">
+                            <div class="my-2" style="color: green;">Logout success.</div>
                           </c:if>
                           <div class="form-floating mb-3">
                             <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com"
