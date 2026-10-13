@@ -33,8 +33,8 @@
       </head>
 
       <body>
-        <!-- <jsp:include page="../layout/header.jsp" /> -->
-        <!-- <jsp:include page="../layout/banner.jsp" /> -->
+        <jsp:include page="../layout/header.jsp" />
+
 
         <!-- Cart Page Start -->
         <div class="container-fluid py-5">
@@ -168,7 +168,7 @@
               </table>
             </div>
 
-            <div class="row g-4 justify-content-end">
+            <div class="row g-4 justify-content-center">
               <div class="col-8"></div>
               <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
                 <div class="bg-light rounded">
@@ -200,7 +200,7 @@
         <!-- Cart Page End -->
 
 
-        <jsp:include page="../layout/feature.jsp" />
+
 
         <jsp:include page="../layout/footer.jsp" />
 
