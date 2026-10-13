@@ -74,12 +74,4 @@ public class Cart {
   public void setCartDetails(List<CartDetail> cartDetails) {
     this.cartDetails = cartDetails;
   }
-
-  @Override
-  public String toString() {
-    return "Cart{" +
-        "id=" + id +
-        ", sum=" + sum +
-        '}';
-  }
 }
