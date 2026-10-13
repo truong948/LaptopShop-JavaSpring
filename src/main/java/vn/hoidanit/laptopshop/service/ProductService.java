@@ -73,12 +73,19 @@ public class ProductService {
       Optional<Product> producOptional = this.productRepository.findById(productId);
       if (producOptional.isPresent()) {
         Product realProduct = producOptional.get();
-        CartDetail cartDetail = new CartDetail();
-        cartDetail.setCart(cart);
-        cartDetail.setProduct(realProduct);
-        cartDetail.setPrice(realProduct.getPrice());
-        cartDetail.setQuantity(1);
-        this.cartDetailRepository.save(cartDetail);
+        CartDetail oldDetail = this.cartDetailRepository.findByCartAndProduct(cart, realProduct);
+        if (oldDetail == null) {
+          CartDetail cartDetail = new CartDetail();
+          cartDetail.setCart(cart);
+          cartDetail.setProduct(realProduct);
+          cartDetail.setPrice(realProduct.getPrice());
+          cartDetail.setQuantity(1);
+          this.cartDetailRepository.save(cartDetail);
+        } else {
+          oldDetail.setQuantity(oldDetail.getQuantity() + 1);
+          this.cartDetailRepository.save(oldDetail);
+        }
+
       }
     }
 

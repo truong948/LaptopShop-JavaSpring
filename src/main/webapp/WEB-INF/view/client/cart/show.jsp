@@ -168,8 +168,8 @@
               </table>
             </div>
 
-            <div class="row g-4 justify-content-center">
-              <div class="col-8"></div>
+            <div class="row g-4 justify-content-start">
+              <div class="col-12 col-md-8"></div>
               <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
                 <div class="bg-light rounded">
                   <div class="p-4">
