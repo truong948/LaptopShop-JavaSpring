@@ -18,6 +18,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import vn.hoidanit.laptopshop.domain.User;
+import vn.hoidanit.laptopshop.repository.CartDetailRepository;
+import vn.hoidanit.laptopshop.repository.CartRepository;
 import vn.hoidanit.laptopshop.service.UserService;
 
 public class CustomSuccessHandler implements AuthenticationSuccessHandler {
@@ -52,6 +54,8 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
     if (user != null) {
       session.setAttribute("fullName", user.getFullName());
       session.setAttribute("avatar", user.getAvatar());
+      session.setAttribute("id", user.getId());
+      session.setAttribute("email", user.getEmail());
     }
 
   }
