@@ -129,4 +129,9 @@ public class User {
         + address + ", phone=" + phone + ", avatar=" + avatar + "]";
   }
 
+  public Object getCart() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getCart'");
+  }
+
 }
