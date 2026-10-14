@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import vn.hoidanit.laptopshop.domain.CartDetail;
 import vn.hoidanit.laptopshop.domain.Product;
 import vn.hoidanit.laptopshop.service.ProductService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,7 +41,9 @@ public class ItemController {
   }
 
   @GetMapping("/cart")
-  public String getCartPage(Model model) {
+  public String getCartPage(Model model, @PathVariable long id) {
+    Product pr = this.productService.fetchProductsById(id).get();
+    model.addAttribute("cartDetail", pr);
     return "client/cart/show";
   }
 
