@@ -1,13 +1,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+      <!DOCTYPE html>
       <html lang="en">
 
       <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Giỏ hàng - Laptopshop</title>
-
+        <meta charset="utf-8">
+        <title>${product.name} - Laptopshop</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
         <!-- Google Web Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,42 +31,48 @@
 
         <!-- Template Stylesheet -->
         <link href="/client/css/style.css" rel="stylesheet">
-
       </head>
 
       <body>
+
         <jsp:include page="../layout/header.jsp" />
-
-
         <!-- Cart Page Start -->
+        <div>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Chi Tiết</li>
+            </ol>
+          </nav>
+        </div>
         <div class="container-fluid py-5">
           <div class="container py-5">
             <div class="table-responsive">
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">Products</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Total</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">Sản phẩm</th>
+                    <th scope="col">Tên</th>
+                    <th scope="col">Gía cả</th>
+                    <th scope="col">Số lượng</th>
+                    <th scope="col">Thành tiền</th>
+                    <th scope="col">Xử lý</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <c:forEach var="cartDetail" items="${cartDetails}"></c:foreach>
+                  <c:forEach var="cartDetail" items="${cartDetails}"></c:forEach>
                   <tr>
                     <th scope="row">
                       <div class="d-flex align-items-center">
-                        <img src="img/vegetable-item-3.png" class="img-fluid me-5 rounded-circle"
+                        <img src="images/product/${cartDetails.product.image}" class="img-fluid me-5 rounded-circle"
                           style="width: 80px; height: 80px;" alt="">
                       </div>
                     </th>
                     <td>
-                      <p class="mb-0 mt-4">Big Banana</p>
+                      <p class="mb-0 mt-4"><a href="/product/${cartDetails.product.name}"></a></p>
                     </td>
                     <td>
-                      <p class="mb-0 mt-4">2.99 $</p>
+                      <p class="mb-0 mt-4"><a href="/product/${cartDetails.product.prices}"></a></p>
                     </td>
                     <td>
                       <div class="input-group quantity mt-4" style="width: 100px;">
@@ -91,7 +99,7 @@
                     </td>
 
                   </tr>
-
+                  </c:forEach>
                 </tbody>
               </table>
             </div>
@@ -125,29 +133,8 @@
             </div>
           </div>
         </div>
-        <!-- Cart Page End -->
-
-
-
-
         <jsp:include page="../layout/footer.jsp" />
-
-
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i
-            class="fa fa-arrow-up"></i></a>
-
-
-        <!-- JavaScript Libraries -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="/client/lib/easing/easing.min.js"></script>
-        <script src="/client/lib/waypoints/waypoints.min.js"></script>
-        <script src="/client/lib/lightbox/js/lightbox.min.js"></script>
-        <script src="/client/lib/owlcarousel/owl.carousel.min.js"></script>
-
-        <!-- Template Javascript -->
-        <script src="/client/js/main.js"></script>
+        <!-- Cart Page End -->
       </body>
 
       </html>

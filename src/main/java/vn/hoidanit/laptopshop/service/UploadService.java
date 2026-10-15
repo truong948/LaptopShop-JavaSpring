@@ -20,7 +20,7 @@ public class UploadService {
   }
 
   public String handleSaveUploadFile(MultipartFile file, String targetFolder) {
-    if (file == null || file.isEmpty()) {
+    if (file.isEmpty()) {
       return "";
     }
     String rootPath = this.servletContext.getRealPath("/resources/images");
@@ -32,6 +32,7 @@ public class UploadService {
       if (!dir.exists())
         dir.mkdirs();
 
+      // Create the file on server
       finalName = System.currentTimeMillis() + "-" + file.getOriginalFilename();
       File serverFile = new File(dir.getAbsolutePath() + File.separator + finalName);
 
@@ -42,6 +43,6 @@ public class UploadService {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    return "/images/" + targetFolder + "/" + finalName;
+    return finalName;
   }
 }
