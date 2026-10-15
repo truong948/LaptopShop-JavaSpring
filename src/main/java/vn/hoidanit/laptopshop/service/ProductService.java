@@ -106,8 +106,35 @@ public class ProductService {
       }
     }
   }
-  
-  public Cart fetchByUser(User user){
+
+  public Cart fetchByUser(User user) {
     return this.cartRepository.findByUser(user);
+  }
+
+  public void handleRemoveCartDetail(long cartDetailId, HttpSession session) {
+    // tìm product by ID
+    Optional<CartDetail> cartDetailOptional = this.cartDetailRepository.findById(cartDetailId);
+    if (cartDetailOptional.isPresent()) {
+      CartDetail cartDetail = cartDetailOptional.get();
+
+      Cart currentCart = cartDetail.getCart();
+
+      // delete cart detail
+      this.cartDetailRepository.deleteById(cartDetailId);
+
+      // update cart
+
+      if (currentCart.getSum() > 1) {
+        // update current cart sum
+        int s = currentCart.getSum() - 1;
+        currentCart.setSum(s);
+        session.setAttribute("sum", s);
+        this.cartRepository.save(currentCart);
+      } else {
+        // delete cart (sum = 1)
+        this.cartRepository.deleteById(currentCart.getId());
+        session.setAttribute("sum", 0);
+      }
+    }
   }
 }

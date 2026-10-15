@@ -102,11 +102,15 @@
                         <p class="mb-0 mt-4" data-cart-detail-id="${cartDetail.id}"></p>
                         <fmt:formatNumber type="number" value="${cartDetail.product.price * cartDetail.quantity}" /> đ
                       </td>
-                      <td>
-                        <button class="btn btn-md rounded-circle bg-light border mt-4">
-                          <i class="fa fa-times text-danger"></i>
-                        </button>
-                      </td>
+                      <<td>
+                        <form method="post" action="/delete-cart-product/${cartDetail.id}">
+                          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                          <button class="btn btn-md rounded-circle bg-light border mt-4">
+                            <i class="fa fa-times text-danger"></i>
+                          </button>
+                        </form>
+                        </td>
+
 
                     </tr>
                   </c:forEach>
@@ -120,10 +124,10 @@
                   <div class="p-4">
                     <h1 class="display-6 mb-4">Thông Tin <span class="fw-normal">Đơn Hàng</span></h1>
                     <div class="d-flex justify-content-between mb-4">
-                      <h5 class="mb-0 me-4" ">Tạm tính:</h5>
+                      <h5 class="mb-0 me-4">Tạm tính:</h5>
                       <p class=" mb-0" data-cart-total-price="${totalPrice}">
                         <fmt:formatNumber type="number" value="${totalPrice}" /> đ
-                        </p>
+                      </p>
                     </div>
                     <div class="d-flex justify-content-between">
                       <h5 class="mb-0 me-4">Phí vận chuyển</h5>
