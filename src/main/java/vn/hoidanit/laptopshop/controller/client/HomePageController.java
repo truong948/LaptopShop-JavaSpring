@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.mysql.cj.x.protobuf.MysqlxCrud.Order;
 
 @Controller
 public class HomePageController {
@@ -88,4 +91,18 @@ public class HomePageController {
   public String getDenyPage(Model model) {
     return "client/auth/deny";
   }
+
+  @GetMapping("/order-history")
+  public String getOrderHistoryPage(Model model, HttpServletRequest request) {
+    User currentUser = new User();// null
+    HttpSession session = request.getSession(false);
+    long id = (long) session.getAttribute("id");
+    currentUser.setId(id);
+
+    // List<Order> orders = this.OrderService.fetchOrderByUser(currentUser);
+    // model.addAttribute("orders", orders);
+
+    return "client/cart/order-history";
+  }
+
 }
