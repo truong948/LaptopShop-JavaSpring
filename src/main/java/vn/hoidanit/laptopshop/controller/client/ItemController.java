@@ -122,4 +122,9 @@ public class ItemController {
     return "redirect:/thanks";
   }
 
+  @GetMapping("/thanks")
+  public String getThankYouPage(Model model) {
+    return "client/cart/thanks";
+  }
+
 }
