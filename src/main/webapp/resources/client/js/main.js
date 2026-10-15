@@ -45,75 +45,71 @@
 
 
     // Testimonial carousel
-    if ($.fn.owlCarousel && $(".testimonial-carousel").length > 0) {
-        $(".testimonial-carousel").owlCarousel({
-            autoplay: true,
-            smartSpeed: 2000,
-            center: false,
-            dots: true,
-            loop: true,
-            margin: 25,
-            nav: true,
-            navText: [
-                '<i class="bi bi-arrow-left"></i>',
-                '<i class="bi bi-arrow-right"></i>'
-            ],
-            responsiveClass: true,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                576: {
-                    items: 1
-                },
-                768: {
-                    items: 1
-                },
-                992: {
-                    items: 2
-                },
-                1200: {
-                    items: 2
-                }
+    $(".testimonial-carousel").owlCarousel({
+        autoplay: true,
+        smartSpeed: 2000,
+        center: false,
+        dots: true,
+        loop: true,
+        margin: 25,
+        nav: true,
+        navText: [
+            '<i class="bi bi-arrow-left"></i>',
+            '<i class="bi bi-arrow-right"></i>'
+        ],
+        responsiveClass: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            576: {
+                items: 1
+            },
+            768: {
+                items: 1
+            },
+            992: {
+                items: 2
+            },
+            1200: {
+                items: 2
             }
-        });
-    }
+        }
+    });
 
 
     // vegetable carousel
-    if ($.fn.owlCarousel && $(".vegetable-carousel").length > 0) {
-        $(".vegetable-carousel").owlCarousel({
-            autoplay: true,
-            smartSpeed: 1500,
-            center: false,
-            dots: true,
-            loop: true,
-            margin: 25,
-            nav: true,
-            navText: [
-                '<i class="bi bi-arrow-left"></i>',
-                '<i class="bi bi-arrow-right"></i>'
-            ],
-            responsiveClass: true,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                576: {
-                    items: 1
-                },
-                768: {
-                    items: 2
-                },
-                992: {
-                    items: 3
-                },
-                1200: {
-                    items: 4
-                }
+    $(".vegetable-carousel").owlCarousel({
+        autoplay: true,
+        smartSpeed: 1500,
+        center: false,
+        dots: true,
+        loop: true,
+        margin: 25,
+        nav: true,
+        navText: [
+            '<i class="bi bi-arrow-left"></i>',
+            '<i class="bi bi-arrow-right"></i>'
+        ],
+        responsiveClass: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            576: {
+                items: 1
+            },
+            768: {
+                items: 2
+            },
+            992: {
+                items: 3
+            },
+            1200: {
+                items: 4
             }
-        });
-    }
+        }
+    });
 
 
     // Modal Video
@@ -136,45 +132,37 @@
 
 
     // Product Quantity
-    // $('.quantity button').on('click', function () {
-    //     var button = $(this);
-    //     var oldValue = button.parent().parent().find('input').val();
-    //     if (button.hasClass('btn-plus')) {
-    //         var newVal = parseFloat(oldValue) + 1;
-    //     } else {
-    //         if (oldValue > 0) {
-    //             var newVal = parseFloat(oldValue) - 1;
-    //         } else {
-    //             newVal = 0;
-    //         }
-    //     }
-    //     button.parent().parent().find('input').val(newVal);
-    // });
     $('.quantity button').on('click', function () {
         let change = 0;
 
         var button = $(this);
-        var input = button.closest('.quantity').find('input');
-        var oldValue = input.val();
+        var oldValue = button.parent().parent().find('input').val();
         if (button.hasClass('btn-plus')) {
             var newVal = parseFloat(oldValue) + 1;
-            change = 1;
+            change = 1
         } else {
             if (oldValue > 1) {
                 var newVal = parseFloat(oldValue) - 1;
                 change = -1;
             } else {
                 newVal = 1;
+                //alert("Min");
             }
         }
+        const input = button.parent().parent().find('input');
         input.val(newVal);
+
+        //set form index
+        const index = input.attr("data-cart-detail-index");
+        const element = document.getElementById(`cartDetails${index}.quantity`);
+        $(element).val(newVal);
 
         //get price
         const price = input.attr("data-cart-detail-price");
         const id = input.attr("data-cart-detail-id");
 
         const priceElement = $(`p[data-cart-detail-id='${id}']`);
-        if (priceElement && priceElement.length) {
+        if (priceElement) {
             const newPrice = +price * newVal;
             priceElement.text(formatCurrency(newPrice.toFixed(2)) + " đ");
         }
@@ -195,12 +183,12 @@
             change = 0;
 
             //update
-            totalPriceElement.each(function (index, element) {
+            totalPriceElement?.each(function (index, element) {
                 //update text
-                $(element).text(formatCurrency(newTotal.toFixed(2)) + " đ");
+                $(totalPriceElement[index]).text(formatCurrency(newTotal.toFixed(2)) + " đ");
 
                 //update data-attribute
-                $(element).attr("data-cart-total-price", newTotal);
+                $(totalPriceElement[index]).attr("data-cart-total-price", newTotal);
             });
         }
     });
@@ -215,8 +203,11 @@
 
         let formatted = formatter.format(value);
         // Replace dots with commas for thousands separator
-        formatted = formatted.replace(/\./g, ',');
+        formatted = formatted.replace(/\./g, '.');
         return formatted;
     }
 
+
+
 })(jQuery);
+
