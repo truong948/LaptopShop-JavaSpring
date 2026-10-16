@@ -2,12 +2,13 @@ package vn.hoidanit.laptopshop.service;
 
 import java.util.List;
 
-import vn.hoidanit.laptopshop.domain.Role;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.config.authentication.UserServiceBeanDefinitionParser;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import vn.hoidanit.laptopshop.domain.Role;
 import vn.hoidanit.laptopshop.domain.User;
 import vn.hoidanit.laptopshop.domain.dto.RegisterDTO;
 import vn.hoidanit.laptopshop.repository.OrderRepository;
@@ -31,6 +32,10 @@ public class UserService {
     this.roleRepository = roleRepository;
     this.orderRepository = orderRepository;
     this.productRepository = productRepository;
+  }
+
+  public Page<User> getAllUsers(Pageable page) {
+    return this.userRepository.findAll(page);
   }
 
   public List<User> getAllUsers() {

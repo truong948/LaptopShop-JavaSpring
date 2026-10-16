@@ -6,6 +6,9 @@ import vn.hoidanit.laptopshop.service.UserService;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,10 +49,17 @@ public class UserController {
     return "hello";
   }
 
-  @RequestMapping("/admin/user")
-  public String getUserPage(Model model) {
-    List<User> users = this.userService.getAllUsers();
+  @GetMapping("/admin/user")
+  public String getUserPage(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+    if (page < 1) {
+      page = 1;
+    }
+    Pageable pageable = PageRequest.of(page - 1, 5);
+    Page<User> usersPage = this.userService.getAllUsers(pageable);
+    List<User> users = usersPage.getContent();
     model.addAttribute("users", users);
+    model.addAttribute("currentPage", page);
+    model.addAttribute("totalPages", usersPage.getTotalPages());
     return "admin/user/show";
   }
 
