@@ -90,7 +90,6 @@ public class ItemController {
     for (CartDetail cd : cartDetails) {
       totalPrice += cd.getPrice() * cd.getQuantity();
     }
-
     model.addAttribute("cartDetails", cartDetails);
     model.addAttribute("totalPrice", totalPrice);
 
