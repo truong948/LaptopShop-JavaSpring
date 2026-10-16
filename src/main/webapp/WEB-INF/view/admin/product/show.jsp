@@ -86,10 +86,13 @@
                             <span aria-hidden="true">&laquo;</span>
                           </a>
                         </li>
-                        <li class="page-item"><a class="page-link" href="/admin/product?page=1">1</a></li>
-                        <li class="page-item"><a class="page-link" href="/admin/product?page=2">2</a></li>
-                        <li class="page-item"><a class="page-link" href="/admin/product?page=3">3</a></li>
-                        <li class="page-item">
+                        <c:forEach begin="0" end="${totalPages-1}" varStatus="loop">
+                          <li class="page-item"><a class="page-link"
+                              href="/admin/product?page=${loop.index + 1}">${loop.index + 1}</a>
+                          </li>
+                        </c:forEach>
+
+                        <li>
                           <a class="page-link" href="#" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                           </a>
@@ -106,7 +109,7 @@
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
-      <script src="js/scripts.js"></script>
+      <script src="/js/scripts.js"></script>
     </body>
     <!-- <body class="sb-nav-fixed">
       <jsp:include page="../layout/header.jsp" />
